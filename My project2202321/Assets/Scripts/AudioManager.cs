@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
 
@@ -14,13 +15,14 @@ public class AudioManager : MonoBehaviour
         {
             Instance = this; 
             DontDestroyOnLoad(gameObject);
+            systemSource = gameObject.GetComponent<AudioSource>();
+            activeSources = new List<AudioSource>();
         }
         else
         {
             Destroy(gameObject);
         }
     }
-
     //Funções de gerenciamento de audio podem ser adicionadas aqui, como tocar sons, ajustar volumes, etc.
     public void PlaySound(AudioClip clip)
     {
